@@ -16,7 +16,11 @@
   </head>
   <body>
     <h1>NestJS Inspector Payload</h1>
-    <p>These payloads will run if the @nestjs/devtools-integration is installed and running.</p>
+    <p>This is a proof of concept for the CVE-2025-54782 RCE vulnerability in NestJS Inspector.</p>
+    <p>Read more: <a href="https://socket.dev/blog/nestjs-rce-vuln">https://socket.dev/blog/nestjs-rce-vuln</a></p>
+    <p>Read more: <a href="https://github.com/nestjs/nest/security/advisories/GHSA-85cg-cmq5-qjm7">https://github.com/nestjs/nest/security/advisories/GHSA-85cg-cmq5-qjm7</a></p>
+    
+    <p>These payloads will run if the @nestjs/devtools-integration 0.2.0 or lower is installed and running.</p>
 
     <p><b>Note: An attacker would just run these payloads automatically on page load. Having to click a button is just for demonstration purposes.</b></p>
 
